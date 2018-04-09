@@ -45,6 +45,7 @@ sleep 5
 open LastPass\ Installer/LastPass\ Installer.app 
 echo "All applications have been installed and moved to the /Applications directory"
 
+
 #Ejects all mounted volumes besides for Macintosh HD (/devdisk0 and /devdisk1)
 for num in $(seq 2 $counter)
 do
