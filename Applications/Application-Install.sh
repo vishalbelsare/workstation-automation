@@ -5,11 +5,23 @@ apppath="/Applications"
 tmppath="$(mktemp -d /tmp/qinstall_XXX)"
 counter=1
 
+#Interactive Menu to select account type
+read -n 1 -p "What type of account build is this, Basic or Engineering? (B/E)" ans;
+case $ans in
+	b|B)
+		csvpath="BasicApps.csv";;
+	e|E)
+		csvpath="EngineeringApps.csv";;
+	*)
+		exit;;
+esac
+
 #Copy download list to temp file, cd into temp dir
-cp -r -p ApplicationDownloads.csv $tmppath && cd $tmppath
+cp -r -p $csvpath $tmppath && cd $tmppath
 
 #Download DMG files from respective sources specified in .csv file ($1=name 2=source)
-awk -F"\"*,\"*" '{cmd="curl -s -Lo"$1 " " $2; system(cmd)}' ApplicationDownloads.csv 
+echo "Downloading Installers..."
+awk -F"\"*,\"*" '{cmd="curl -s -Lo"$1 " " $2; system(cmd)}' $csvpath 
 
 #Mounts all DMG Files, and increments a counter to be used in eject sequence
 for f in *.dmg ;
