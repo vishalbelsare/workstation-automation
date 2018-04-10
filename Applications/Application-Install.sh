@@ -5,28 +5,22 @@ apppath="/Applications"
 tmppath="$(mktemp -d /tmp/qinstall_XXX)"
 counter=1
 
-#Create temp directory to download .dmg files to
-cp -r -p ApplicationDownloads.csv $tmppath
-cd $tmppath
+#Copy download list to temp file, cd into temp dir
+cp -r -p ApplicationDownloads.csv $tmppath && cd $tmppath
 
-#Download DMG files from respective sources
+#Download DMG files from respective sources specified in .csv file
+#Column 1 is the name of the file, Column 2 is the download source
 awk -F"\"*,\"*" '{cmd="curl -s -Lo"$1 " " $2; system(cmd)}' ApplicationDownloads.csv 
 
-#Mounts all DMG Files
+#Mounts all DMG Files, and increments a counter to be used in eject sequence
 for f in *.dmg ;
 	do hdiutil mount "$f" -nobrowse
 	let "counter++" 
 done
 
-#Copies .App files directly into Applications folder, and .pkg files to tmp folder for processing [---Want to refactor this with a loop]
-cp -r /Volumes/Google\ Chrome/Google\ Chrome.app $apppath
-cp -r /Volumes/Slack.app/Slack.app $apppath
-cp -r /Volumes/Sublime\ Text/Sublime\ Text.app $apppath
-cp -r /Volumes/Emacs/Emacs.app $apppath
-cp -r /Volumes/Dropbox\ Installer/Dropbox.app $apppath
-echo "Chrome, Slack, and Sublime Text have been moved to your Applications folder"
-cp -r /Volumes/VirtualBox/VirtualBox.pkg $tmppath
-cp -r /Volumes/AirwatchAgent/VMware\ AirWatch\ Agent.pkg $tmppath
+#Copies all .app files to /Applications folder and all .pkg files to /tmp for processing
+sudo rsync -av /Volumes/*/*.app $apppath --exclude /Volumes/Macintosh\ HD
+sudo rsync -av /Volumes/*/*.pkg $tmppath --exclude /Volumes/Macintosh\ HD
 
 #Unzips all zip files in /tmp
 for f in *.zip ;
