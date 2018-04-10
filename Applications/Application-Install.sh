@@ -33,8 +33,8 @@ done
 
 #Copies all .app files to /Applications folder from /Volumes and tmppath
 sudo rsync -av /Volumes/*/*.app $apppath --exclude /Volumes/Macintosh\ HD
-sudo rsync -av $tmp/*.app $apppath --exclude /Volumes/Macintosh\ HD
-rsync -av $tmp/LastPass\ Installer/*.app $apppath
+sudo rsync -av $tmppath/*.app $apppath
+sudo rsync -av $tmppath/LastPass\ Installer/*.app $apppath
 
 #Open Chrome so that the LastPass installer recognizes it as a browser on the system
 open /Applications/Google\ Chrome.app && sleep 5 && open /Applications/LastPass\ Installer.app
