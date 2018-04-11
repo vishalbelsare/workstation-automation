@@ -14,7 +14,7 @@ trap finish EXIT
 echo "Installing ESET Antivirus..."
 #ESET Install
 tar -xzf EraAgentInstallerMac.tar.gz -C $tmppath
-sudo cd $tmpath
+cd $tmpath
 sudo bash EraAgentInstaller.sh
 
 echo "Downloading VMware Airwatch"
@@ -44,13 +44,3 @@ do
 	diskutil eject /dev/disk$num
 done
 echo "All Installer DMGs have been ejected"
-
-
-
-<a class="download-link button button-green" href="/firefox/download/thanks/" data-direct-link="https://download.mozilla.org/?product=firefox-latest-ssl&amp;os=osx&amp;lang=en-US" data-link-type="download" data-display-name="macOS" data-download-version="osx" data-download-os="Desktop" data-download-location="other">
-          <strong class="download-title">
-            
-              Download now
-            
-          </strong>
-        </a>

@@ -6,4 +6,7 @@ VirtualBox-Install.dmg,https://download.virtualbox.org/virtualbox/5.2.8/VirtualB
 lpmacosx.zip,https://lastpass.com/download/cdn/lpmacosx.zip
 Pritunl.pkg.zip,https://github.com/pritunl/pritunl-client-electron/releases/download/1.0.1632.42/Pritunl.pkg.zip
 DropboxInstaller.dmg,https://www.dropbox.com/download?plat=mac
-Github-Installer.zip, https://central.github.com/deployments/desktop/desktop/latest/darwin
+Github-Installer.zip,https://central.github.com/deployments/desktop/desktop/latest/darwin
+SourceTree-Install.zip,https://downloads.atlassian.com/software/sourcetree/Sourcetree_2.7.1d.zip?_ga=2.69484432.1855299860.1523469045-926153057.1523469045
+FireFox-Installer, https://download-installer.cdn.mozilla.net/pub/firefox/releases/59.0.2/mac/en-US/Firefox%2059.0.2.dmg
+Spotify.zip, https://download.scdn.co/SpotifyInstaller.zip
