@@ -5,6 +5,12 @@ apppath="/Applications"
 tmppath="$(mktemp -d /tmp/qinstall_XXX)"
 counter=1
 
+#Deletes temp directory if any failures occur
+function finish {
+rm -rf "$tmppath"
+}
+trap finish EXIT
+
 #Interactive Menu to select account type
 read -n 1 -p "What type of account build is this, Basic or Engineering? (B/E)" ans;
 case $ans in
@@ -58,9 +64,3 @@ do
 	diskutil eject /dev/disk$num
 done
 echo "All Installer DMGs have been ejected"
-
-#Deletes temp directory
-function finish {
-rm -rf "$tmppath"
-}
-trap finish EXIT
